@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia Experience: RTO Student Services Simulation</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#1f2a52',
+                        teal: '#00bec7',
+                        lightCyan: '#d2f0f0',
+                        grey: '#8fa1a6',
+                        medTeal: '#aed9d9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1f2a52; /* Brand Navy */
+        }
+
+        /* Subtle CSS dot pattern for the header */
+        .header-pattern {
+            background-image: radial-gradient(#ffffff 1.75px, transparent 1.75px);
+            background-size: 20px 20px;
+        }
+        
+        /* Hide the default range slider track and thumb while keeping full keyboard/touch accessibility */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 440px;
+            width: 48px;
+            cursor: ew-resize;
+            margin-top: 0;
+        }
+        input[type=range]::-moz-range-thumb {
+            height: 440px;
+            width: 48px;
+            cursor: ew-resize;
+            border: none;
+            background: transparent;
+        }
+
+        /* Initial hint animation for the slider handle */
+        @keyframes hintSlide {
+            0%, 100% { transform: translateX(-50%); }
+            20% { transform: translateX(calc(-50% + 15px)); }
+            40% { transform: translateX(calc(-50% - 15px)); }
+            60% { transform: translateX(calc(-50% + 10px)); }
+            80% { transform: translateX(calc(-50% - 10px)); }
+        }
+        .animate-hint {
+            animation: hintSlide 2.5s ease-in-out 1s 1;
+        }
+
+        /* Prevent text wrapping discrepancies between the dyslexic and overlay layers */
+        .transcript-line {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex items-center justify-center p-2 sm:p-4">
+
+    <!-- Main Card Container -->
+    <main class="max-w-4xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+        
+        <!-- Header Section -->
+        <header class="bg-navy text-white p-4 md:p-6 text-center relative">
+            <div class="absolute inset-0 opacity-10 header-pattern pointer-events-none" aria-hidden="true"></div>
+            <h1 class="text-2xl md:text-3xl font-bold mb-2 relative z-10">Understanding Dyslexia at Student Services</h1>
+            <p class="text-medTeal text-xs md:text-sm max-w-2xl mx-auto relative z-10 leading-relaxed">
+                For students with dyslexia, dense enrolment forms, USI codes, or stark white emails can appear reversed, crowded, or shifting on the page. 
+                Simple accommodations—like tinted overlays, plain-English spacing, and supportive front-counter help—can stabilise visual processing and ease enrolment stress.
+            </p>
+        </header>
+
+        <!-- Interactive Simulation Section -->
+        <section class="p-4 md:p-6 bg-slate-50 flex flex-col items-center">
+            
+            <!-- Top Label Bar -->
+            <div class="w-full max-w-3xl flex flex-wrap justify-between items-center gap-2 mb-3 px-1">
+                <span class="text-xs md:text-sm font-semibold text-grey uppercase tracking-wider flex items-center gap-2">
+                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                    Simulation View
+                </span>
+                <span class="text-xs md:text-sm font-medium text-navy bg-lightCyan border border-medTeal px-3 py-1 rounded-full animate-pulse">
+                    Slide to apply blue overlay &rarr;
+                </span>
+            </div>
+
+            <!-- The Interactive Screen Area -->
+            <div class="relative w-full max-w-3xl border-2 border-medTeal rounded-xl overflow-hidden bg-white shadow-inner h-[430px] md:h-[450px]">
+                
+                <!-- Base Layer: Simulated Dyslexic View -->
+                <div id="dyslexic-layer" class="absolute inset-0 p-4 md:p-6 overflow-x-auto overflow-y-hidden" aria-hidden="true">
+                    <div class="min-w-[540px]">
+                        <h2 class="text-lg md:text-xl font-bold text-navy mb-4 border-b-2 border-medTeal pb-2">Ƨtubɘnt Ƨɘɿvicɘƨ Ɔountɘɿ Tɿanƨcɿiqt</h2>
+                        
+                        <div class="space-y-4 text-sm md:text-base text-slate-700 font-medium tracking-wide">
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Abmin:</span> Hɘllo, wɘlcomɘ ot Ƨtubɘnt Ƨɘɿvicɘƨ.<br>
+                                How cna I hɘlq wtih yuoɿ ɘnɿolmɘnt tobay?
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Ƨtubɘnt:</span> I ma tɿying ot finiƨh ym ɘnɿolmɘnt foɿm,<br>
+                                dut lal thɘ bɘnƨɘ inƨtɿuctionƨ aɿɘ dluɿɿing<br>
+                                togɘthɘɿ no thɘ whitɘ qaqɘɿ.
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Abmin:</span> Taht si comqlɘtɘly finɘ—takɘ yuoɿ timɘ.<br>
+                                Wɘ wnat ot makɘ thiƨ ɘaƨy foɿ yuo.<br>
+                                Havɘ yuo dɘɘn adlɘ ot ɘntɘɿ yuoɿ UƧI cobɘ?
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Ƨtubɘnt:</span> No, I havɘ byƨlɘxia anb thɘ lɘttɘɿƨ anb<br>
+                                numdɘɿƨ ni ym UƧI kɘɘq jumqing aɿounb.<br>
+                                I ma woɿɿiɘb I wlil miƨƨ Monbay'ƨ intakɘ.
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Abmin:</span> bon't woɿɿy ta lal—wɘ cna qɿint thiƨ no<br>
+                                tintɘb qaqɘɿ anb vɘɿify yuoɿ UƧI togɘthɘɿ.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay Layer: Stabilised Blue Overlay View (Clipped dynamically by JS) -->
+                <div id="corrected-layer" class="absolute inset-0 p-4 md:p-6 bg-lightCyan overflow-x-auto overflow-y-hidden" style="clip-path: polygon(0 0, 15% 0, 15% 100%, 0 100%);">
+                    <div class="min-w-[540px]">
+                        <h2 class="text-lg md:text-xl font-bold text-navy mb-4 border-b-2 border-teal pb-2">Student Services Counter Transcript</h2>
+                        
+                        <div class="space-y-4 text-sm md:text-base text-slate-800 font-medium tracking-wide">
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Admin:</span> Hello, welcome to Student Services.<br>
+                                How can I help with your enrolment today?
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Student:</span> I am trying to finish my enrolment form,<br>
+                                but all the dense instructions are blurring<br>
+                                together on the white paper.
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Admin:</span> That is completely fine—take your time.<br>
+                                We want to make this easy for you.<br>
+                                Have you been able to enter your USI code?
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Student:</span> No, I have dyslexia and the letters and<br>
+                                numbers in my USI keep jumping around.<br>
+                                I am worried I will miss Monday's intake.
+                            </p>
+                            
+                            <p class="transcript-line">
+                                <span class="font-bold text-navy">Admin:</span> Don't worry at all—we can print this on<br>
+                                tinted paper and verify your USI together.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Slider Handle -->
+                <div id="slider-handle" class="absolute top-0 bottom-0 w-1 bg-teal shadow-[0_0_15px_rgba(0,190,199,0.5)] z-10 pointer-events-none animate-hint" style="left: 15%;">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-14 bg-navy rounded-full flex items-center justify-center shadow-lg border-2 border-teal">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 4 4 4m8-8l4 4-4 4"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Functional Invisible Range Slider for Mouse, Touch, and Keyboard -->
+                <input 
+                    type="range" 
+                    id="reveal-slider" 
+                    min="0" 
+                    max="100" 
+                    value="15" 
+                    class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-ew-resize" 
+                    aria-label="Slide left or right to apply the blue tinted overlay to the Student Services transcript"
+                >
+                
+            </div>
+        </section>
+
+        <!-- Footer Information -->
+        <footer class="bg-white border-t border-medTeal p-4 md:p-5 text-center">
+            <p class="text-grey text-xs md:text-sm leading-relaxed max-w-3xl mx-auto">
+                This simulation is designed to foster empathy across RTO front-counter and administrative interactions. Dyslexia affects everyone differently—alongside coloured overlays, clear headings, short paragraphs, generous spacing, and plain-English AI prompts help make enrolment accessible for all students.
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        window.onload = function () {
+            const slider = document.getElementById('reveal-slider');
+            const overlay = document.getElementById('corrected-layer');
+            const baseLayer = document.getElementById('dyslexic-layer');
+            const handle = document.getElementById('slider-handle');
+
+            /**
+             * Updates the blue overlay clip-path and handle position based on slider percentage
+             * @param {number|string} value - Slider percentage (0 to 100)
+             */
+            const updateReveal = (value) => {
+                overlay.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
+                handle.style.left = `${value}%`;
+            };
+
+            // Listen for mouse, touch, or keyboard range adjustments
+            slider.addEventListener('input', (e) => {
+                handle.classList.remove('animate-hint');
+                updateReveal(e.target.value);
+            });
+
+            // Keep horizontal scroll synchronised on narrower screens
+            overlay.addEventListener('scroll', () => {
+                baseLayer.scrollLeft = overlay.scrollLeft;
+            });
+            baseLayer.addEventListener('scroll', () => {
+                overlay.scrollLeft = baseLayer.scrollLeft;
+            });
+
+            // Initialise slider position
+            updateReveal(slider.value);
+        };
+    </script>
+</body>
+</html>
